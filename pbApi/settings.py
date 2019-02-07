@@ -10,6 +10,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
+AUTH_USER_MODEL = 'user.CustomUser'
 
 # Application definition
 
@@ -21,7 +22,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'weather_data'
+    'weather_data',
+	'user'
 ]
 
 MIDDLEWARE = [
@@ -63,7 +65,7 @@ DATABASES = {
 
 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
 		'NAME': 'pbdb',
-		'USER': 'pbUser',
+		'USER': 'pbuser',
 		'PASSWORD': 'pb123',
 		'HOST': 'localhost',
 		'PORT': '',

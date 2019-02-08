@@ -13,6 +13,8 @@ app_name = 'weather_data'
 urlpatterns = [
 
     url(r'^data/days/all/$', views.GetDayDataView.as_view()),
+    # ex: /met/hive
+    url(r'^met/(?P<city>\w+)/$', views.met),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

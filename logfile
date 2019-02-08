@@ -1,0 +1,54 @@
+2019-02-07 10:51:17.874 PST [87749] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2019-02-07 10:51:17.874 PST [87749] LOG:  listening on IPv6 address "::1", port 5432
+2019-02-07 10:51:17.874 PST [87749] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2019-02-07 10:51:17.886 PST [87750] LOG:  database system was shut down at 2019-02-07 10:50:59 PST
+2019-02-07 10:51:17.890 PST [87749] LOG:  database system is ready to accept connections
+2019-02-07 10:52:31.739 PST [87783] ERROR:  syntax error at or near "‘pb123’" at character 34
+2019-02-07 10:52:31.739 PST [87783] STATEMENT:  CREATE USER pbUser WITH PASSWORD ‘pb123’;
+2019-02-07 10:52:58.715 PST [87783] ERROR:  syntax error at or near "pb123" at character 34
+2019-02-07 10:52:58.715 PST [87783] STATEMENT:  CREATE USER pbUser WITH PASSWORD pb123;
+2019-02-07 10:53:05.306 PST [87783] ERROR:  syntax error at or near ""pb123"" at character 34
+2019-02-07 10:53:05.306 PST [87783] STATEMENT:  CREATE USER pbUser WITH PASSWORD "pb123";
+2019-02-07 10:53:22.622 PST [87783] ERROR:  syntax error at or near ""pb123"" at character 34
+2019-02-07 10:53:22.622 PST [87783] STATEMENT:  CREATE USER pbUser WITH PASSWORD "pb123"
+	;
+2019-02-07 10:54:08.179 PST [87783] ERROR:  syntax error at or near "CRATE" at character 1
+2019-02-07 10:54:08.179 PST [87783] STATEMENT:  CRATE USER pbUser WITH PASSWORD 'pb123';
+2019-02-07 10:58:23.673 PST [87995] ERROR:  role "pbuser" already exists
+2019-02-07 10:58:23.673 PST [87995] STATEMENT:  CREATE USER pbUser WITH PASSWORD 'pb123'
+	;
+2019-02-07 11:04:25.067 PST [88261] FATAL:  role "pbUser" does not exist
+2019-02-07 11:08:22.472 PST [88399] ERROR:  relation "auth_user" does not exist at character 280
+2019-02-07 11:08:22.472 PST [88399] STATEMENT:  SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'anderskampenes'
+2019-02-07 11:09:45.132 PST [88444] ERROR:  relation "auth_user" does not exist at character 280
+2019-02-07 11:09:45.132 PST [88444] STATEMENT:  SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'anderskampenes'
+2019-02-07 15:40:57.473 PST [2763] ERROR:  database "pbdb" is being accessed by other users
+2019-02-07 15:40:57.473 PST [2763] DETAIL:  There is 1 other session using the database.
+2019-02-07 15:40:57.473 PST [2763] STATEMENT:  DROP DATABASE pbdb;
+2019-02-07 15:41:27.816 PST [2781] ERROR:  database "pbdb" is being accessed by other users
+2019-02-07 15:41:27.816 PST [2781] DETAIL:  There is 1 other session using the database.
+2019-02-07 15:41:27.816 PST [2781] STATEMENT:  DROP DATABASE pbdb;
+2019-02-07 15:42:10.866 PST [2805] ERROR:  database "pbdb" is being accessed by other users
+2019-02-07 15:42:10.866 PST [2805] DETAIL:  There is 1 other session using the database.
+2019-02-07 15:42:10.866 PST [2805] STATEMENT:  DROP DATABASE pbdb;
+2019-02-07 15:42:18.700 PST [2811] ERROR:  database "pbdb" is being accessed by other users
+2019-02-07 15:42:18.700 PST [2811] DETAIL:  There is 1 other session using the database.
+2019-02-07 15:42:18.700 PST [2811] STATEMENT:  DROP DATABASE pbdb;
+2019-02-07 15:48:43.901 PST [3120] ERROR:  database "pbdbpwd" does not exist
+2019-02-07 15:48:43.901 PST [3120] STATEMENT:  DROP DATABASE pbdbpwd;
+2019-02-07 15:53:05.641 PST [3384] ERROR:  relation "user_customuser" does not exist
+2019-02-07 15:53:05.641 PST [3384] STATEMENT:  ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_user_customuser_id" FOREIGN KEY ("user_id") REFERENCES "user_customuser" ("id") DEFERRABLE INITIALLY DEFERRED
+2019-02-07 16:18:42.255 PST [4745] ERROR:  relation "weather_data_city" does not exist at character 71
+2019-02-07 16:18:42.255 PST [4745] STATEMENT:  SELECT "weather_data_city"."id", "weather_data_city"."city_name" FROM "weather_data_city" WHERE "weather_data_city"."city_name" = 'hive'
+2019-02-07 16:18:42.651 PST [4745] ERROR:  relation "weather_data_city" does not exist at character 71
+2019-02-07 16:18:42.651 PST [4745] STATEMENT:  SELECT "weather_data_city"."id", "weather_data_city"."city_name" FROM "weather_data_city"  LIMIT 21
+2019-02-07 16:18:42.651 PST [4745] ERROR:  relation "weather_data_city" does not exist at character 71
+2019-02-07 16:18:42.651 PST [4745] STATEMENT:  SELECT "weather_data_city"."id", "weather_data_city"."city_name" FROM "weather_data_city" WHERE "weather_data_city"."city_name" = 'hive'  LIMIT 21
+2019-02-07 16:18:42.652 PST [4745] ERROR:  relation "weather_data_city" does not exist at character 71
+2019-02-07 16:18:42.652 PST [4745] STATEMENT:  SELECT "weather_data_city"."id", "weather_data_city"."city_name" FROM "weather_data_city"  LIMIT 21
+2019-02-07 16:18:42.652 PST [4745] ERROR:  relation "weather_data_city" does not exist at character 71
+2019-02-07 16:18:42.652 PST [4745] STATEMENT:  SELECT "weather_data_city"."id", "weather_data_city"."city_name" FROM "weather_data_city" WHERE "weather_data_city"."city_name" = 'hive'  LIMIT 21
+2019-02-07 16:18:42.652 PST [4745] ERROR:  relation "weather_data_city" does not exist at character 71
+2019-02-07 16:18:42.652 PST [4745] STATEMENT:  SELECT "weather_data_city"."id", "weather_data_city"."city_name" FROM "weather_data_city" WHERE "weather_data_city"."city_name" = 'hive'  LIMIT 21
+2019-02-07 16:18:42.653 PST [4745] ERROR:  relation "weather_data_city" does not exist at character 71
+2019-02-07 16:18:42.653 PST [4745] STATEMENT:  SELECT "weather_data_city"."id", "weather_data_city"."city_name" FROM "weather_data_city" WHERE "weather_data_city"."city_name" = 'hive'  LIMIT 21

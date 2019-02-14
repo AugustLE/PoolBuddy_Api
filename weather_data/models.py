@@ -3,16 +3,18 @@ from django.db import models
 # Create your models here.
 
 class DayData(models.Model):
-	day = models.CharField(max_length=100)
-	is_active = models.BooleanField(default=False)
+    day = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=False)
 
-	def __str__(self):
-		return self.day
+    def __str__(self):
+        return self.day
 
 # MET API MODELS
 class City(models.Model):
-
     city_name = models.CharField(max_length=200)
+    latitude = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
+    longitude = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
+
     
     def __str__(self):
         return self.city_name

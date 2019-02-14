@@ -1,10 +1,12 @@
 import os
+import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '^0$(x=d-+oxnacx$*#o&@pf2+od$zz30&ug%+*7qw$$t453=1y'
 
+TOKEN_EXPIRE_TIME = datetime.timedelta(days=120)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -21,9 +23,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'user',
     'rest_framework',
+	'rest_framework.authtoken',
     'weather_data',
-	'user'
 ]
 
 MIDDLEWARE = [
@@ -73,11 +76,14 @@ DATABASES = {
 }
 
 REST_FRAMEWORK = {
+	'DEFAULT_AUTHENTICATION_CLASSES': (
+		'user.authentication.ExpiringTokenAuthentication',
+	),
 	'DEFAULT_RENDERER_CLASSES': (
 		'rest_framework.renderers.JSONRenderer',
 	),
 	'DEFAULT_PERMISSION_CLASSES': (
-		'rest_framework.permissions.AllowAny',
+		'rest_framework.permissions.IsAuthenticated',
 		#'rest_framework.permissions.AllowAny',
 	)
 }

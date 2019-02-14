@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from weather_data.models import City
 
 
 class CustomUserManager(BaseUserManager):
@@ -39,6 +40,9 @@ class CustomUser(AbstractBaseUser):
 	)
 	full_name = models.CharField(verbose_name='full name', max_length=50)
 	date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
+	pool_size = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+	push_device_id = models.CharField(max_length=150, null=True, blank=True)
+	city = models.ForeignKey(City, null=True, blank=True, on_delete=models.DO_NOTHING)
 
 	is_active = models.BooleanField(default=True)
 	is_admin = models.BooleanField(default=False)

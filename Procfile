@@ -1,1 +1,1 @@
-web: gunicorn PoolBuddy_Api.wsgi --log-file -
+web: gunicorn pbApi.wsgi --log-file -

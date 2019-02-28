@@ -9,6 +9,7 @@ from django.conf import settings
 from .models import CustomUser
 from rest_framework import permissions
 from .serializers import UserSerializer
+from raw.models import RegisteredDevice
 
 
 # Create your views here.
@@ -37,16 +38,26 @@ class RegisterUserView(APIView):
         password = request.data.get('password')
         full_name = request.data.get('full_name')
         pool_size = request.data.get('pool_size')
-        #is_valid = validate_email(email, verify=True, check_mx=True)
-        if CustomUser.objects.filter(email=email).count() == 0:
-            user = CustomUser(email=email, full_name=full_name, pool_size=pool_size)
-            user.set_password(password)
-            user.save()
-            Token.objects.filter(user=user).delete()
-            token, _ = Token.objects.get_or_create(user=user)
-            return Response({"token": token.key, "error": None})
+        device_id = request.data.get('device_id')
 
-        return Response({"error": 'A user with this error already exists'})
+        if RegisteredDevice.objects.filter(device_id=device_id).count() > 0:
+            return Response({"error": 'Device with this ID already exists'})
+        #is_valid = validate_email(email, verify=True, check_mx=True)
+        if CustomUser.objects.filter(email=email).count() > 0:
+            return Response({"error": 'A user with this email already exists'})
+
+        user = CustomUser(email=email, full_name=full_name, pool_size=pool_size)
+        user.set_password(password)
+        user.save()
+
+        new_device = RegisteredDevice(user=user, device_id=device_id)
+        new_device.save()
+
+        Token.objects.filter(user=user).delete()
+        token, _ = Token.objects.get_or_create(user=user)
+
+        return Response({"token": token.key, "error": None})
+
 
 
 class RegisterForPush(APIView):

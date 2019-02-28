@@ -20,5 +20,6 @@ from django.conf.urls import url, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include('weather_data.urls')),
-    url(r'^', include('user.urls'))
+    url(r'^', include('user.urls')),
+    url(r'^', include('raw.urls'))
 ]

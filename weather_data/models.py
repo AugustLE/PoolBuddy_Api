@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 
 class DayData(models.Model):
@@ -39,3 +38,10 @@ class Forecast(models.Model):
 
     def __str__(self):
         return self.temp_from[-12:-10] + " " +  self.temp_from[-9:-1] + "-" + self.temp_to[-9:-1]
+
+
+
+
+
+
+

@@ -3,7 +3,7 @@ from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import GetDayDataView
+
 from rest_framework.authtoken import views as rest_framework_views
 
 app_name = 'weather_data'
@@ -12,7 +12,7 @@ app_name = 'weather_data'
 
 urlpatterns = [
 
-    url(r'^data/days/all/$', views.GetDayDataView.as_view()),
+    #url(r'^data/days/all/$', views.GetDayDataView.as_view()),
     # ex: /met/hive
     url(r'^met/(?P<city>\w+)/$', views.met),
 

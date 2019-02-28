@@ -1,4 +1,6 @@
 
 .idea/
-__pycache__/
 migrations/
+__pycache__
+*.pyo
+*.pyc

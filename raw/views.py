@@ -25,7 +25,7 @@ class RawDataView(APIView):
 		device = RegisteredDevice.objects.get(device_id=device_id)
 		new_raw_data = RawTempData(
 			device=device,
-			timestamp=datetime.fromtimestamp(timestamp),
+			timestamp=datetime.datetime.fromtimestamp(timestamp).isoformat(),
 			air_temp_C=air_temp_C,
 			air_temp_F=air_temp_F,
 			water_temp_C=water_temp_C,

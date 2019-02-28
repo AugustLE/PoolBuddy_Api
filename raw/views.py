@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status, permissions
 from .models import RawTempData, RegisteredDevice
 from .serializers import RawDataSerializer
+from datetime import datetime
 # Create your views here.
 
 
@@ -24,7 +25,7 @@ class RawDataView(APIView):
 		device = RegisteredDevice.objects.get(device_id=device_id)
 		new_raw_data = RawTempData(
 			device=device,
-			timestamp=timestamp,
+			timestamp=datetime.fromtimestamp(timestamp),
 			air_temp_C=air_temp_C,
 			air_temp_F=air_temp_F,
 			water_temp_C=water_temp_C,

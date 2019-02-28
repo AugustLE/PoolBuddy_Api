@@ -1,13 +1,6 @@
 from django.db import models
 # Create your models here.
 
-class DayData(models.Model):
-    day = models.CharField(max_length=100)
-    is_active = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.day
-
 # MET API MODELS
 class City(models.Model):
     city_name = models.CharField(max_length=200)

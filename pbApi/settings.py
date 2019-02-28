@@ -27,7 +27,8 @@ INSTALLED_APPS = [
 	'rest_framework.authtoken',
 	'weather_data',
 	'user',
-	'raw'
+	'raw',
+	'client'
 ]
 
 MIDDLEWARE = [

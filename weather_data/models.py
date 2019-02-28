@@ -3,7 +3,7 @@ from django.db import models
 
 # MET API MODELS
 class City(models.Model):
-    city_name = models.CharField(max_length=200)
+    city_name = models.CharField(max_length=200, unique=True)
     latitude = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
     longitude = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
 
@@ -31,7 +31,6 @@ class Forecast(models.Model):
 
     def __str__(self):
         return self.temp_from[-12:-10] + " " +  self.temp_from[-9:-1] + "-" + self.temp_to[-9:-1]
-
 
 
 

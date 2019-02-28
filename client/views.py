@@ -1,0 +1,55 @@
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, permissions
+import datetime
+from .models import ForeastShortTerm, ForecastLongTerm
+from weather_data.models import City
+from .serializers import ForecastShortTermSerializer, ForecastLongTermSerializer, CitySerializer
+
+class ShortTermForecastView(APIView):
+
+	@csrf_exempt
+	def get(self, request):
+
+		time_now = datetime.datetime.now() - datetime.timedelta(hours=8)
+		time_end = time_now + datetime.timedelta(days=3)
+		queryset = ForeastShortTerm.objects.filter(date__range=[time_now, time_end])
+		data = ForecastShortTermSerializer(queryset, many=True).data
+		return Response(data, status=status.HTTP_200_OK)
+
+
+class LongTermForecastView(APIView):
+
+	@csrf_exempt
+	def get(self, request):
+
+		time_now = datetime.datetime.now() - datetime.timedelta(hours=8)
+		time_end = time_now + datetime.timedelta(days=10)
+		queryset = ForecastLongTerm.objects.filter(date__range=[time_now, time_end])
+		data = ForecastLongTermSerializer(queryset, many=True).data
+		return Response(data, status=status.HTTP_200_OK)
+
+
+class CityView(APIView):
+
+	@csrf_exempt
+	def get(self, request):
+		search_word = request.GET.get('city_search')
+		queryset = City.objects.filter(city_name__icontains=search_word)
+		data = CitySerializer(queryset, many=True).data
+		return Response(data, status=status.HTTP_200_OK)
+
+
+	@csrf_exempt
+	def post(self, request):
+
+		city_pk = request.data.get('city_pk')
+		city = City.objects.get(pk=city_pk)
+		user = request.user
+		user.city = city
+		user.save()
+
+		return Response('OK', status=status.HTTP_200_OK)
+
+

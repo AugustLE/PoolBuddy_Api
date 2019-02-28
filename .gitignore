@@ -4,3 +4,4 @@ migrations/
 __pycache__
 *.pyo
 *.pyc
+migrations

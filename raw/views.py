@@ -22,7 +22,9 @@ class RawDataView(APIView):
 		water_temp_C =  request.data.get('water_temp_C')
 		water_temp_F =  request.data.get('water_temp_F')
 		print("")
+		
 		print("timestamp: ", timestamp)
+
 		print("")
 
 		device = RegisteredDevice.objects.get(device_id=device_id)

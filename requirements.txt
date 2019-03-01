@@ -4,3 +4,6 @@ django-filter
 psycopg2
 xmltodict
 requests
+gunicorn
+django-heroku
+dj_database_url

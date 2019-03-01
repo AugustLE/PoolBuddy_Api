@@ -18,9 +18,9 @@ from django.urls import path
 from django.conf.urls import url, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    url(r'^', include('weather_data.urls')),
-    url(r'^', include('user.urls')),
-    url(r'^', include('raw.urls')),
-    url(r'^', include('client.urls'))
+    path('poolbuddy/admin/', admin.site.urls),
+    url(r'^poolbuddy/', include('weather_data.urls')),
+    url(r'^poolbuddy/', include('user.urls')),
+    url(r'^poolbuddy/', include('raw.urls')),
+    url(r'^poolbuddy/', include('client.urls'))
 ]

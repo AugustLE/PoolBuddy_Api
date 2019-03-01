@@ -21,8 +21,7 @@ def met(request, city):
 
     lat, long = city_to_latlong(city)
     # get MET API xml
-    res = requests.get(
-        f'https://api.met.no/weatherapi/locationforecastlts/1.3/?lat={lat}&lon={long}')
+    res = requests.get(f'https://api.met.no/weatherapi/locationforecastlts/1.3/?lat={lat}&lon={long}')
     # convert xml to json
     o = xml_to_dict(res.text)
     city = save_city(city)

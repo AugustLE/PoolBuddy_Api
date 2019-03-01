@@ -1,25 +1,16 @@
-import datetime
-import django_heroku
 import os
- from decouple import config
- import dj_database_url
+import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = '^0$(x=d-+oxnacx$*#o&@pf2+od$zz30&ug%+*7qw$$t453=1y'
+SECRET_KEY = '^0$(x=d-+oxnacx$*#o&@pf2+od$zz30&ug%+*7qw$$t453=1y'
 
 TOKEN_EXPIRE_TIME = datetime.timedelta(days=120)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-SECRET_KEY = config(‘SECRET_KEY’)
-# SECURITY WARNING: don’t run with debug turned on in production!
-DEBUG = config(‘DEBUG’, default=False, cast=bool)
-ALLOWED_HOSTS = [‘*’]
-# Recommended setting is [ ‘.herokuapp.com’ ]
-
-#ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 AUTH_USER_MODEL = 'user.CustomUser'
 
@@ -73,7 +64,7 @@ WSGI_APPLICATION = 'pbApi.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
 
@@ -85,11 +76,6 @@ DATABASES = {
 		'PORT': '',
 	}
 }
-"""
-DATABASES = {
- ‘default’: dj_database_url.config(
- default=config(‘DATABASE_URL’)
- )}
 
 REST_FRAMEWORK = {
 	'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -139,10 +125,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
-
-
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())

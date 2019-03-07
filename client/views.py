@@ -6,6 +6,7 @@ import datetime
 from .models import ForeastShortTerm, ForecastLongTerm
 from weather_data.models import City
 from .serializers import ForecastShortTermSerializer, ForecastLongTermSerializer, CitySerializer
+from user.serializers import SimpleUserSerializer, UserSerializer
 
 class ShortTermForecastView(APIView):
 
@@ -49,7 +50,5 @@ class CityView(APIView):
 		user = request.user
 		user.city = city
 		user.save()
-
-		return Response('OK', status=status.HTTP_200_OK)
-
-
+		serialized_user = UserSerializer(user, many=False).data
+		return Response(serialized_user, status=status.HTTP_200_OK)

@@ -8,8 +8,8 @@ from rest_framework import status
 from django.conf import settings
 from .models import CustomUser
 from rest_framework import permissions
-from .serializers import UserSerializer
 from raw.models import RegisteredDevice
+from .serializers import UserSerializer, SimpleUserSerializer
 
 
 # Create your views here.
@@ -86,5 +86,8 @@ class UserDetail(APIView):
     permission_classes = (permissions.IsAuthenticated,)
     @csrf_exempt
     def get(self, request):
-        data = UserSerializer(request.user).data
+        if request.user.city:
+            data = UserSerializer(request.user, many=False).data
+        else:
+            data = SimpleUserSerializer(request.user, many=False).data
         return Response(data, status=status.HTTP_200_OK)

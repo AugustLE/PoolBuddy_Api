@@ -16,7 +16,7 @@ class ShortTermForecastView(APIView):
 
 		time_now = datetime.datetime.now() - datetime.timedelta(hours=8)
 		time_end = time_now + datetime.timedelta(days=3)
-		queryset = ForeastShortTerm.objects.filter(date__range=[time_now, time_end])
+		queryset = ForeastShortTerm.objects.filter(date__range=[time_now, time_end], user=request.user)
 		data = ForecastShortTermSerializer(queryset, many=True).data
 		return Response(data, status=status.HTTP_200_OK)
 
@@ -28,7 +28,7 @@ class LongTermForecastView(APIView):
 
 		time_now = datetime.datetime.now() - datetime.timedelta(hours=8)
 		time_end = time_now + datetime.timedelta(days=10)
-		queryset = ForecastLongTerm.objects.filter(date__range=[time_now, time_end])
+		queryset = ForecastLongTerm.objects.filter(date__range=[time_now, time_end], user=request.user)
 		data = ForecastLongTermSerializer(queryset, many=True).data
 		return Response(data, status=status.HTTP_200_OK)
 

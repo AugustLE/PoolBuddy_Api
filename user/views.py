@@ -95,3 +95,20 @@ class UserDetail(APIView):
         device = RegisteredDevice.objects.get(user=request.user)
         data['device'] = device.device_id
         return Response(data, status=status.HTTP_200_OK)
+
+    @csrf_exempt
+    def post(self, request):
+        pool_size = request.data.get('pool_size')
+        device_id = request.data.get('device_id')
+        name = request.data.get('name')
+
+        user = request.user
+        device = RegisteredDevice.objects.get(user=user)
+        user.pool_size = pool_size
+        user.full_name = name
+        device.device_id = device_id
+        user.save()
+        device.save()
+        data = UserSerializer(user, many=False).data
+        data['device'] = device.device_id
+        return Response(data, status=status.HTTP_200_OK)

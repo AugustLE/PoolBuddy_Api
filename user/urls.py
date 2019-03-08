@@ -13,6 +13,7 @@ app_name = 'user'
 urlpatterns = [
 
     url(r'^user/details/$', views.UserDetail.as_view()),
+    url(r'^user/edit/$', views.UserDetail.as_view()),
     url(r'^get_auth_token/$', rest_framework_views.obtain_auth_token),
     url(r'^user/login/$', views.UserAuthToken.as_view()),
     url(r'^user/logout/$', views.LogOutView.as_view()),

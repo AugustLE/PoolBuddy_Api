@@ -7,6 +7,7 @@ from .models import ForeastShortTerm, ForecastLongTerm
 from weather_data.models import City
 from .serializers import ForecastShortTermSerializer, ForecastLongTermSerializer, CitySerializer
 from user.serializers import SimpleUserSerializer, UserSerializer
+from raw.models import RegisteredDevice
 
 
 class ShortTermForecastView(APIView):
@@ -52,4 +53,18 @@ class CityView(APIView):
 		user.city = city
 		user.save()
 		serialized_user = UserSerializer(user, many=False).data
+		device = RegisteredDevice.objects.get(user=user)
+		serialized_user['device'] = device.device_id
 		return Response(serialized_user, status=status.HTTP_200_OK)
+
+class UnregisterCity(APIView):
+
+	@csrf_exempt
+	def post(self, request):
+		user = request.user
+		user.city = None
+		user.save()
+		data = SimpleUserSerializer(user, many=False).data
+		return Response(data, status=status.HTTP_200_OK)
+
+

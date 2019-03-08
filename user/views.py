@@ -10,6 +10,7 @@ from .models import CustomUser
 from rest_framework import permissions
 from raw.models import RegisteredDevice
 from .serializers import UserSerializer, SimpleUserSerializer
+from raw.models import RegisteredDevice
 
 
 # Create your views here.
@@ -90,4 +91,7 @@ class UserDetail(APIView):
             data = UserSerializer(request.user, many=False).data
         else:
             data = SimpleUserSerializer(request.user, many=False).data
+
+        device = RegisteredDevice.objects.get(user=request.user)
+        data['device'] = device.device_id
         return Response(data, status=status.HTTP_200_OK)

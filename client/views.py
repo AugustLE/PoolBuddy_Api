@@ -8,6 +8,7 @@ from weather_data.models import City
 from .serializers import ForecastShortTermSerializer, ForecastLongTermSerializer, CitySerializer
 from user.serializers import SimpleUserSerializer, UserSerializer
 
+
 class ShortTermForecastView(APIView):
 
 	@csrf_exempt

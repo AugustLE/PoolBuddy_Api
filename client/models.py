@@ -19,6 +19,9 @@ class ForeastShortTerm(models.Model):
 	temp_20_to_22 = models.FloatField()
 	temp_22_to_24 = models.FloatField()
 
+	def __str__(self):
+		return str(self.date)
+
 
 #temperatures in celcius
 class ForecastLongTerm(models.Model):
@@ -28,3 +31,6 @@ class ForecastLongTerm(models.Model):
 	temp_6_to_12 = models.FloatField()
 	temp_12_to_18 = models.FloatField()
 	temp_18_to_24 = models.FloatField()
+
+	def __str__(self):
+		return str(self.date)

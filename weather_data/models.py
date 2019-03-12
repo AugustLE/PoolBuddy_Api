@@ -13,8 +13,8 @@ class City(models.Model):
     
 class Forecast(models.Model):        
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    temp_from = models.CharField(max_length=200)
-    temp_to = models.CharField(max_length=200)
+    temp_from = models.DateTimeField()
+    temp_to = models.DateTimeField()
     temperature = models.CharField(max_length=200)
     windDirection = models.CharField(max_length=200)
     windSpeed = models.CharField(max_length=200)
@@ -30,9 +30,11 @@ class Forecast(models.Model):
     dewpointTemperature = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.temp_from[-12:-10] + " " +  self.temp_from[-9:-1] + "-" + self.temp_to[-9:-1]
+        return str(self.temp_from)
 
-
+class RawModelOutput(models.Model):
+    temp_from = models.DateTimeField()
+    temperature = models.CharField(max_length=200)
 
 
 

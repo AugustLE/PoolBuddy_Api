@@ -16,6 +16,7 @@ urlpatterns = [
 	url(r'^client/getcities/$', views.CityView.as_view()),
 	url(r'^client/registercity/$', views.CityView.as_view()),
 	url(r'^client/unregcity/$', views.UnregisterCity.as_view()),
+	url(r'^client/updateforecast/(?P<f_type>\w+)/$', views.UpdateForecastsView.as_view())
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

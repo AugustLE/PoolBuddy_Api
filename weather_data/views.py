@@ -6,6 +6,7 @@ from rest_framework import status, permissions
 from django.http import HttpResponse
 import requests
 import xmltodict, json
+from datetime import datetime, timedelta
 
 
 
@@ -32,6 +33,7 @@ def met(request, city):
         try:
             save_temperature(obj, city)
         except:
+            print('fail')
             pass
     
     # dump to readable string
@@ -67,9 +69,15 @@ def save_temperature(obj, city):
             long: float; longitude coordinate 
     '''
     if "temperature" in obj["location"]:
+        print(obj)
+        date_from = datetime.strptime(obj['@from'], "%Y-%m-%dT%H:%M:%SZ") - timedelta(hours=7)
+        date_to = datetime.strptime(obj['@to'], "%Y-%m-%dT%H:%M:%SZ") - timedelta(hours=7)
+        #print(obj['@from'])
+        #print(obj['@to'])
+
         obj, created = Forecast.objects.get_or_create(city = city, 
-                        temp_from = obj["@from"],
-                        temp_to = obj["@to"],
+                        temp_from = date_from,
+                        temp_to = date_to,
                         temperature = obj["location"]["temperature"]["@value"],
                         windDirection = obj["location"]["windDirection"]["@deg"],
                         windSpeed = obj["location"]["windSpeed"]["@mps"],

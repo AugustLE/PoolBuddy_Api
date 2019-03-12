@@ -11,6 +11,7 @@ from rest_framework import permissions
 from raw.models import RegisteredDevice
 from .serializers import UserSerializer, SimpleUserSerializer
 from raw.models import RegisteredDevice
+from client.models import ForecastLongTerm, ForeastShortTerm
 
 
 # Create your views here.
@@ -53,6 +54,14 @@ class RegisterUserView(APIView):
 
         new_device = RegisteredDevice(user=user, device_id=device_id)
         new_device.save()
+
+        ###### TODO: ONLY FOR DEMO, NOT FOR PRODUCTION
+        for obj in ForecastLongTerm.objects.all():
+            obj.user = user
+        for obj in ForeastShortTerm.objects.all():
+            obj.user = user
+        ######
+
 
         Token.objects.filter(user=user).delete()
         token, _ = Token.objects.get_or_create(user=user)

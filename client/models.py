@@ -4,7 +4,7 @@ from user.models import CustomUser
 #temperatures in celcius
 
 class ForeastShortTerm(models.Model):
-	user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+	user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=True, null=True)
 	date = models.DateField()
 	temp_0_to_2 = models.FloatField(null=True, blank=True)
 	temp_2_to_4 = models.FloatField(null=True, blank=True)
@@ -25,7 +25,7 @@ class ForeastShortTerm(models.Model):
 
 #temperatures in celcius
 class ForecastLongTerm(models.Model):
-	user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+	user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=True, null=True)
 	date = models.DateField()
 	temp_0_to_6 = models.FloatField(null=True, blank=True)
 	temp_6_to_12 = models.FloatField(null=True, blank=True)

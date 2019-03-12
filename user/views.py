@@ -58,8 +58,10 @@ class RegisterUserView(APIView):
         ###### TODO: ONLY FOR DEMO, NOT FOR PRODUCTION
         for obj in ForecastLongTerm.objects.all():
             obj.user = user
+            obj.save()
         for obj in ForeastShortTerm.objects.all():
             obj.user = user
+            obj.save()
         ######
 
 
